@@ -21,7 +21,7 @@ export default class Grid {
     this.grid[row][col] = num;
   }
 
-  next(): number[][] {
+  nextGrid(): number[][] {
     const nextGrid = Grid.newGrid(this.rows, this.cols);
     let state: number;
     const below = {

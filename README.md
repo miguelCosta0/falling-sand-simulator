@@ -3,7 +3,6 @@
 ##### TODO
 
 - Update README file
-- Add reset button
 - Add gravity
 
 ## How can you can i run it?
@@ -13,7 +12,7 @@
 
 ```
 npm install
-npm run build
+npm start
 ```
 
 - Open the index.html file in your browser

@@ -7,6 +7,17 @@ body {
 }
 .canvas {
   display: block;
-  margin: 80px auto;
-  background-color: #fff;
+  margin: 80px auto 15px auto;
+  background-color: #000000;
+}
+.reset-btn {
+  background-color: rgb(240, 225, 15);
+  display: block;
+  margin: 5px auto;
+  padding: 7px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+}
+.reset-btn:hover {
+  background-color: rgb(211, 179, 0);
 }

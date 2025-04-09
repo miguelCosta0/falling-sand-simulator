@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc -w",
-    "build": "tsc"
+    "start": "tsc && http-server -c-1 -o -s"
   },
   "type": "module",
   "keywords": [],
@@ -14,5 +14,8 @@
   "description": "",
   "devDependencies": {
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
   }
 }

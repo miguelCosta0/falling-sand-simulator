@@ -35,6 +35,39 @@ export default class FallingSand {
   }
 
   public init() {
+    this.setupMouseEvents();
+    this.setupResetEvent();
+    // requestAnimationFrame(this.nextFrame.bind(this));
+
+    setInterval(() => {
+      this.nextFrame();
+    }, 17);
+  }
+
+  private nextFrame() {
+    if (this.mouse.overCanvas && this.mouse.isPressed) {
+      this.setGroupOfParticles(5);
+    }
+
+    this.drawGrid();
+    this.grid.nextGrid();
+
+    // requestAnimationFrame(this.nextFrame.bind(this));
+  }
+
+  private setupResetEvent() {
+    const resetBtn = document.querySelector(".reset-btn") as HTMLButtonElement;
+
+    resetBtn.addEventListener("click", (e) => {
+      for (let i = 0; i < this.grid.rows; i++) {
+        for (let j = 0; j < this.grid.cols; j++) {
+          this.grid.set(i, j, 0);
+        }
+      }
+    });
+  }
+
+  private setupMouseEvents() {
     this.canvas.addEventListener("mousemove", (e) => {
       this.mouse.overCanvas = true;
       this.mouse.row = Math.floor(e.offsetY / this.particleWidth);
@@ -49,15 +82,6 @@ export default class FallingSand {
     document.addEventListener("mouseup", (e) => {
       this.mouse.isPressed = false;
     });
-
-    setInterval(() => {
-      if (this.mouse.overCanvas && this.mouse.isPressed) {
-        this.setGroupOfParticles(5);
-      }
-
-      this.drawGrid();
-      this.grid.next();
-    }, 18);
   }
 
   private setGroupOfParticles(n: number) {
