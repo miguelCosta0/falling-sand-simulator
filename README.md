@@ -4,7 +4,7 @@
 
 - Update README file
 
-## How can you can i run it?
+## How can i run it?
 
 - Clone the project to your machine
 - Open the terminal in the project folder and execute the commands below
