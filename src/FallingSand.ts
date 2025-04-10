@@ -1,6 +1,6 @@
 import Grid from "./Grid.js";
-import randomNumber from "./randomNumber.js";
-import SandColorPalette, { SandColorPaletteSize } from "./SandColorPalette.js";
+import type { Particle } from "./types/Particle.js";
+import pickSandColorPalette from "./utils/sandColorPalette.js";
 
 export default class FallingSand {
   private readonly canvas: HTMLCanvasElement;
@@ -14,13 +14,9 @@ export default class FallingSand {
     overCanvas: boolean;
   };
 
-  constructor(
-    canvas: HTMLCanvasElement,
-    ctx: CanvasRenderingContext2D,
-    particleWidth: number
-  ) {
+  constructor(canvas: HTMLCanvasElement, particleWidth: number) {
     this.canvas = canvas;
-    this.ctx = ctx;
+    this.ctx = canvas.getContext("2d")!;
     this.particleWidth = particleWidth;
     this.grid = new Grid(
       Math.floor(this.canvas.height / particleWidth),
@@ -61,7 +57,7 @@ export default class FallingSand {
     resetBtn.addEventListener("click", (e) => {
       for (let i = 0; i < this.grid.rows; i++) {
         for (let j = 0; j < this.grid.cols; j++) {
-          this.grid.set(i, j, 0);
+          this.grid.setParticle(i, j, null);
         }
       }
     });
@@ -91,21 +87,28 @@ export default class FallingSand {
 
     for (let row = rowStart; row < rowStart + n; row++) {
       for (let col = colStart; col < colStart + n; col++) {
-        if (Math.random() < 0.35)
-          this.grid.set(row, col, randomNumber(1, SandColorPaletteSize));
+        if (Math.random() > 0.35) continue;
+
+        const newParticle: Particle = {
+          color: pickSandColorPalette(),
+          velocity: 1,
+        };
+        this.grid.setParticle(row, col, newParticle);
       }
     }
   }
 
   private drawGrid() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    let particleColor: number;
+    let particle = this.grid.getParticle(0, 0);
 
     for (let i = 0; i < this.grid.rows; i++) {
       for (let j = 0; j < this.grid.cols; j++) {
-        if (!(particleColor = this.grid.get(i, j))) continue;
+        particle = this.grid.getParticle(i, j);
 
-        this.ctx.fillStyle = SandColorPalette[particleColor];
+        if (!particle) continue;
+
+        this.ctx.fillStyle = particle.color;
         this.ctx.fillRect(
           j * this.particleWidth,
           i * this.particleWidth,

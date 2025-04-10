@@ -3,7 +3,6 @@
 ##### TODO
 
 - Update README file
-- Add gravity
 
 ## How can you can i run it?
 
