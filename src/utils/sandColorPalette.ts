@@ -1,16 +1,16 @@
-import randomNumber from "./randomNumber.js";
+import randomNumber from './randomNumber';
 
 export const sandColorPalette: Array<string> = [
-  "#F4E2D8",
-  "#E0C5A1",
-  "#CFA670",
-  "#B88B4A",
+  '#F4E2D8',
+  '#E0C5A1',
+  '#CFA670',
+  '#B88B4A',
   // "#8B5E3C",
-  "#FFF6B3",
-  "#FFE066",
-  "#FFCB47",
-  "#E0A340",
-  "#A66E2E",
+  '#FFF6B3',
+  '#FFE066',
+  '#FFCB47',
+  '#E0A340',
+  '#A66E2E',
 ];
 
 export default function pickSandColorPalette(index?: number): string {

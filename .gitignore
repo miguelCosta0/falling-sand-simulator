@@ -1,2 +1,6 @@
 /node_modules
 /public/js
+
+.editorconfig
+.prettierrc.*
+eslint.config.*

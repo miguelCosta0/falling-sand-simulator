@@ -1,6 +1,6 @@
-import Grid from "./Grid.js";
-import type { Particle } from "./types/Particle.js";
-import pickSandColorPalette from "./utils/sandColorPalette.js";
+import Grid from './Grid';
+import type { Particle } from './types/Particle';
+import pickSandColorPalette from './utils/sandColorPalette';
 
 export default class FallingSand {
   private readonly canvas: HTMLCanvasElement;
@@ -16,7 +16,7 @@ export default class FallingSand {
 
   constructor(canvas: HTMLCanvasElement, particleWidth: number) {
     this.canvas = canvas;
-    this.ctx = canvas.getContext("2d")!;
+    this.ctx = canvas.getContext('2d')!;
     this.particleWidth = particleWidth;
     this.grid = new Grid(
       Math.floor(this.canvas.height / particleWidth),
@@ -52,9 +52,9 @@ export default class FallingSand {
   }
 
   private setupResetEvent() {
-    const resetBtn = document.querySelector(".reset-btn") as HTMLButtonElement;
+    const resetBtn = document.querySelector('.reset-btn') as HTMLButtonElement;
 
-    resetBtn.addEventListener("click", (e) => {
+    resetBtn.addEventListener('click', (e) => {
       for (let i = 0; i < this.grid.rows; i++) {
         for (let j = 0; j < this.grid.cols; j++) {
           this.grid.setParticle(i, j, null);
@@ -64,18 +64,18 @@ export default class FallingSand {
   }
 
   private setupMouseEvents() {
-    this.canvas.addEventListener("mousemove", (e) => {
+    this.canvas.addEventListener('mousemove', (e) => {
       this.mouse.overCanvas = true;
       this.mouse.row = Math.floor(e.offsetY / this.particleWidth);
       this.mouse.col = Math.floor(e.offsetX / this.particleWidth);
     });
-    this.canvas.addEventListener("mouseleave", (e) => {
+    this.canvas.addEventListener('mouseleave', (e) => {
       this.mouse.overCanvas = false;
     });
-    document.addEventListener("mousedown", (e) => {
+    document.addEventListener('mousedown', (e) => {
       this.mouse.isPressed = e.button === 0;
     });
-    document.addEventListener("mouseup", (e) => {
+    document.addEventListener('mouseup', (e) => {
       this.mouse.isPressed = false;
     });
   }

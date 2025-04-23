@@ -3,17 +3,20 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsc -w",
-    "start": "tsc && http-server -c-1 -o -s"
+    "dev": "webpack -w",
+    "start": "webpack && http-server -c-1 -o -s"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "typescript": "^5.8.3"
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "eslint": "^9.25.1",
+    "@eslint/eslintrc": "^3"
   },
   "dependencies": {
     "http-server": "^14.1.1"
